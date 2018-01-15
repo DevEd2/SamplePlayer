@@ -7,9 +7,6 @@
 
 DebugFlag		set	1
 
-; Uncomment to enable GBC double speed mode.
-DoubleSpeed		set	1
-
 ; ================================================================
 ; Project includes
 ; ================================================================
