@@ -1,2 +1,2 @@
 # SamplePlayer
-Game Boy sample player
+Just a basic Game Boy sample player. Supports both single-speed and double-speed mode.
