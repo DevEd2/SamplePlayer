@@ -1,31 +1,31 @@
 ; Uncomment to enable GBC double speed mode.
-;DoubleSpeed		set	1
+DoubleSpeed		set	1
 
 ; ================================================================
 ; Sample player
 ; ================================================================
 
 PlaySample:
-
-	add	a,a
-	add	a, LOW(SampleTable)
-	ld	l,a
-	adc	a, HIGH(SampleTable)
-	sub	l
-	ld	h,a
-	
-	ld	c,LOW(rNR51)
+	push	af
+	ld	c,rNR51-$ff00
 	ld	a,$ff
 	ld	[c],a
 	dec	c
-	ld	a,$77
+	xor	%10001000
 	ld	[c],a
 	ld	a,$20
 	ldh	[rNR32],a
-	
+	pop	af
+
+	ld	hl,SampleTable
+	add	a
+	ld	b,0
+	ld	c,a
+	add	hl,bc
 	ld	a,[hl+]
 	ld	h,[hl]
 	ld	l,a
+	
 	ld	a,[hl+]
 	ld	[SamplePtr],a
 	ld	a,[hl+]
@@ -49,7 +49,7 @@ DoSample:
 	jr	nz,.doplay
 	xor	a
 	ld	[SampleVolume],a
-	inc	a ; ld	a,1
+	ld	a,1
 	ld	[TimerInterruptFlag],a
 	pop	af
 	reti
@@ -58,8 +58,10 @@ DoSample:
 	push	hl
 	ld	hl,SampleSize
 	ld	a,[hl+]
-	ld	d,[hl]
-	ld	e,a
+	ld	h,[hl]
+	ld	l,a
+	ld	d,h
+	ld	e,l
 	ld	hl,SamplePtr
 	ld	a,[hl+]
 	ld	h,[hl]
@@ -118,6 +120,13 @@ DoSample:
 	ldh	[rNR33],a
 	ld	a,$87
 	ldh	[rNR34],a
+	; optimization by pigdevil2010 (was originally 16x dec de)
+	ld	a,e
+	sub	16
+	ld	e,a
+	jr	nc,.nocarry
+	dec	d
+.nocarry
 	
 	
 	ld	a,h
@@ -132,18 +141,16 @@ DoSample:
 	ld	a,l
 	ld	[SamplePtr],a
 	
-	ld	hl,-16
-	add	hl,de
-	ld	a,h
-	inc	a
+	ld	a,d
+	cp	$ff
 	jr	nz,.noreset2
 	xor	a
 	ld	[SamplePlaying],a
 	ldh	[rNR30],a
 .noreset2
-	ld	a,h
+	ld	a,d
 	ld	[SampleSize+1],a
-	ld	a,l
+	ld	a,e
 	ld	[SampleSize],a
 	
 	pop	af
@@ -199,7 +206,6 @@ Sample_SnoopingEnd
 
 Sample_Error:		incbin	"Samples/error.aud"
 Sample_ErrorEnd
-
 else
 Sample_Sega:		incbin	"Samples/sega_hq.aud"
 Sample_SegaEnd

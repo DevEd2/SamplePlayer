@@ -139,7 +139,7 @@ ProgramStart:
 	
 	ld	a,IEF_TIMER
 	ldh	[rIE],a				; set interrupt flags
-	ld	a,$6
+	or	%00000110
 	ldh	[rTAC],a
 
 	ld	a,[GBCFlag]

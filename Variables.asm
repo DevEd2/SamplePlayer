@@ -22,7 +22,6 @@ SampleSize			ds	2
 SampleBank			ds	1
 SampleBankCount		ds	1
 SampleVolume		ds	1
-SampleTick			ds	1
 
 CurrentSample		ds	1
 
