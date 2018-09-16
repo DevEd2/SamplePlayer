@@ -62,7 +62,6 @@ def main(argv):
 		try:
 			x=swap(ord(InFile.read(1))&0xf0)
 			y=ord(InFile.read(1))&0xf0
-			print(hex(x%0xf0),", ",hex(y%0xf0),", ",hex(x+y))
 			z.append(x+y)
 		except TypeError:
 			break;
