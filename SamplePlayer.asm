@@ -1,27 +1,25 @@
 ; Uncomment to enable GBC double speed mode.
-DoubleSpeed		set	1
+;DoubleSpeed		set	1
 
 ; ================================================================
 ; Sample player
 ; ================================================================
 
 PlaySample:
-	push	af
-	ld	c,rNR51-$ff00
+	add	a
+	add	low(SampleTable)
+	ld	l,a
+	adc	high(SampleTable)
+	sub	l
+	ld	h,a
+	ld	c,low(rNR51)
 	ld	a,$ff
 	ld	[c],a
 	dec	c
-	xor	%10001000
+	ld	a,$77
 	ld	[c],a
 	ld	a,$20
 	ldh	[rNR32],a
-	pop	af
-
-	ld	hl,SampleTable
-	add	a
-	ld	b,0
-	ld	c,a
-	add	hl,bc
 	ld	a,[hl+]
 	ld	h,[hl]
 	ld	l,a
@@ -49,7 +47,7 @@ DoSample:
 	jr	nz,.doplay
 	xor	a
 	ld	[SampleVolume],a
-	ld	a,1
+	inc	a
 	ld	[TimerInterruptFlag],a
 	pop	af
 	reti
@@ -58,10 +56,8 @@ DoSample:
 	push	hl
 	ld	hl,SampleSize
 	ld	a,[hl+]
-	ld	h,[hl]
-	ld	l,a
-	ld	d,h
-	ld	e,l
+	ld	d,[hl]
+	ld	e,a
 	ld	hl,SamplePtr
 	ld	a,[hl+]
 	ld	h,[hl]
