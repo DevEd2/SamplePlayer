@@ -58,16 +58,19 @@ def main(argv):
 	print("Opened", InFile.name)
 			
 	z=[]
+	s=0
 	while 1:
 		try:
 			x=swap(ord(InFile.read(1))&0xf0)
 			y=ord(InFile.read(1))&0xf0
 			z.append(x+y)
+			s=s+1
 		except TypeError:
 			break;
 	OutFile.write(bytes(z))
-	
-	print("Conversion complete.")
+	print("Conversion complete.\n\nSample size:",s//1024,"\bK (",'\b'+str(s),"\b bytes)")
+	if s>16384:
+		print("Warning: Sample is larger than 16K.")
 	
 	InFile.close()
 	OutFile.close()
