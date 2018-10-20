@@ -1,9 +1,25 @@
 ; Uncomment to enable GBC double speed mode.
-;DoubleSpeed		set	1
+DoubleSpeed		set	1
+
+; ================================================================
+; Sample player memory
+; ================================================================
+
+section "Sample RAM",wram0
+
+SamplePlaying		ds	1
+SamplePtr			ds	2
+SampleSize			ds	2
+SampleBank			ds	1
+SampleBankCount		ds	1
+SampleVolume		ds	1
+TimerInterruptFlag	ds	1
 
 ; ================================================================
 ; Sample player
 ; ================================================================
+
+section "Sample player",rom0
 
 PlaySample:
 	add	a

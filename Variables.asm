@@ -14,14 +14,6 @@ SECTION	"Variables",WRAM0
 GBCFlag				ds	1
 sys_btnHold			ds	1	; held buttons
 sys_btnPress		ds	1	; pressed buttons
-TimerInterruptFlag	ds	1
-
-SamplePlaying		ds	1
-SamplePtr			ds	2
-SampleSize			ds	2
-SampleBank			ds	1
-SampleBankCount		ds	1
-SampleVolume		ds	1
 
 CurrentSample		ds	1
 
