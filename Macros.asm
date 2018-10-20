@@ -70,11 +70,6 @@ BeepWait:	macro
 	pop	hl
 	pop	af
 	endm
-	
-Sample:		macro
-	dw	\1,\2
-	db	\3
-	endm
 
 ; ================================================================
 ; Project-specific macros

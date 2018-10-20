@@ -2,8 +2,13 @@
 DoubleSpeed		set	1
 
 ; ================================================================
-; Sample player memory
+; Sample player defines
 ; ================================================================
+
+Sample:		macro
+	dw	\1,\2
+	db	\3
+	endm
 
 section "Sample RAM",wram0
 
