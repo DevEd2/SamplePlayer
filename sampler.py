@@ -1,8 +1,7 @@
 # sampler.py - Convert raw audio samples to GB format
 
 import sys, getopt, struct
-
-assert str is not bytes, "Python 3 is required to run this script"
+assert str is not bytes, "Python 3 is required to run this script."
 
 global GBSSongPointers
 
@@ -68,7 +67,7 @@ def main(argv):
 			z.append(x+y)
 			s=s+1
 		except TypeError:
-			break
+			break;
 	OutFile.write(bytes(z))
 	print("Conversion complete.\n\nSample size:",s//1024,"\bK (",'\b'+str(s),"\b bytes)")
 	if s>16384:
