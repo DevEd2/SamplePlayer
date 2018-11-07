@@ -1,5 +1,5 @@
 ; Uncomment to enable GBC double speed mode.
-DoubleSpeed		set	1
+; DoubleSpeed		set	1
 
 ; ================================================================
 ; Sample player defines

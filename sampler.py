@@ -61,8 +61,8 @@ def main(argv):
 	s=0
 	while 1:
 		try:
-			x=swap(ord(InFile.read(1))&0xf0)
-			y=ord(InFile.read(1))&0xf0
+			x=ord(InFile.read(1))&0xf0
+			y=swap(ord(InFile.read(1))&0xf0)
 			z.append(x+y)
 			s=s+1
 		except TypeError:
