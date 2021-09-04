@@ -12,13 +12,13 @@ Sample:		macro
 
 section "Sample RAM",wram0
 
-SamplePlaying		ds	1
-SamplePtr			ds	2
-SampleSize			ds	2
-SampleBank			ds	1
-SampleBankCount		ds	1
-SampleVolume		ds	1
-TimerInterruptFlag	ds	1
+SamplePlaying:		ds	1
+SamplePtr:			ds	2
+SampleSize:			ds	2
+SampleBank:			ds	1
+SampleBankCount:	ds	1
+SampleVolume:		ds	1
+TimerInterruptFlag:	ds	1
 
 ; ================================================================
 ; Sample player
@@ -205,25 +205,25 @@ endc
 section	"Sample bank 1",romx,bank[1]
 if	!def(DoubleSpeed)
 Sample_Sega:		incbin	"Samples/sega.aud"
-Sample_SegaEnd
+Sample_SegaEnd:
 
 Sample_Mario:		incbin	"Samples/mario.aud"
-Sample_MarioEnd
+Sample_MarioEnd:
 
 section	"Sample bank 2",romx,bank[2]
 Sample_Wilhelm:		incbin	"Samples/wilhelm.aud"
-Sample_WilhelmEnd
+Sample_WilhelmEnd:
 
 Sample_GoofYell:	incbin	"Samples/goofyell.aud"
-Sample_GoofYellEnd
+Sample_GoofYellEnd:
 
 section "Sample bank 3",romx,bank[3]
 Sample_Snooping:	incbin	"Samples/snooping.aud"
-Sample_SnoopingEnd
+Sample_SnoopingEnd:
 
 Sample_Error:		incbin	"Samples/error.aud"
-Sample_ErrorEnd
+Sample_ErrorEnd:
 else
 Sample_Sega:		incbin	"Samples/sega_hq.aud"
-Sample_SegaEnd
+Sample_SegaEnd:
 endc

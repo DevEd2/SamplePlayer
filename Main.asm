@@ -91,7 +91,7 @@ NintendoLogo:	; DO NOT MODIFY OR ROM WILL NOT BOOT!!!
 	db	$bb,$bb,$67,$63,$6e,$0e,$ec,$cc,$dd,$dc,$99,$9f,$bb,$b9,$33,$3e
 
 ROMTitle:		db	"SAMPLE TEST"		; ROM title (11 bytes)
-ProductCode		db	0,0,0,0				; product code (4 bytes)
+ProductCode:	db	0,0,0,0				; product code (4 bytes)
 GBCSupport:		db	$80					; GBC support (0 = DMG only, $80 = DMG/GBC, $C0 = GBC only)
 NewLicenseCode:	db	"DS"				; new license code (2 bytes)
 SGBSupport:		db	0					; SGB support
@@ -236,7 +236,7 @@ MainLoop:
 ; ================================================================	
 
 Font:			incbin	"Font.bin"	; 1bpp font data
-Font_End
+Font_End:
 
 Pal_Grayscale:
 	dw	$7fff,$6e94,$354a,$0000
